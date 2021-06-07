@@ -1,12 +1,17 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import App from './App';
+import CalendarComponent from './components/CalendarComponent';
 import reportWebVitals from './reportWebVitals';
+
+const testObj = {
+  asd: 1,
+  sda: 2
+};
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <CalendarComponent events={testObj} />
   </React.StrictMode>,
   document.getElementById('root')
 );

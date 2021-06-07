@@ -1,13 +1,67 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+:root {
+  --main-text-color: #242424;
+  --red-text-color: #c93b2b;
+  --red-event-color: #b02942;
+  --green-event-color: #5cb058;
+  --orange-event-color: #d35c27;
+  --boder-color: #ededed;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+body {
+  margin: 0px;
+  padding: 0px;
+  font-family: 'Open Sans', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-size: 16px;
+}
+
+.calendarShell {
+  margin: 1em;
+  padding: 1.5em;
+  border: 1em solid var(--boder-color);
+  border-radius: 1em;
+}
+
+.calendarShell h1 {
+  margin: 0px;
+}
+
+.calendarShell .subHeader {
+  display: grid;
+  grid-template-columns: 50% 50%;
+  font-size: 1.5em;
+  color: var(--red-text-color);
+  margin-bottom: 1em;
+}
+
+.calendarShell .subHeader .navigation {
+  text-align: right;
+  color: var(--main-text-color);
+}
+
+.calendarShell .subHeader span {
+  cursor: pointer;
+  user-select: none;
+  -moz-user-select: none;
+}
+
+.calendarShell .subHeader span:first-of-type {
+  margin-right: 4em;
+}
+
+.calendarShell .monthGrid {
+  list-style: none;
+  border: 1px solid var(--boder-color);
+  border-right: 0px;
+  border-bottom: 0px;
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  margin: 0px;
+  padding: 0px;
+}
+
+.calendarShell .monthGrid .dayCell {
+  border-right: 1px solid var(--boder-color);
+  border-bottom: 1px solid var(--boder-color);
 }
