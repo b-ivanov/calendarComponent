@@ -8,10 +8,15 @@ const testObj = {
   asd: 1,
   sda: 2
 };
+const startFrom= {
+  year: 2021,
+  month: 5,
+  day: 2
+};
 
 ReactDOM.render(
   <React.StrictMode>
-    <CalendarComponent events={testObj} />
+    <CalendarComponent events={testObj} startingDate={startFrom}/>
   </React.StrictMode>,
   document.getElementById('root')
 );
