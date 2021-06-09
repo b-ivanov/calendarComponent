@@ -1,21 +1,8 @@
 import React from 'react';
 import DayHeaders from './DayHeaders';
 import DayCell from './DayCell';
-
-interface CalendarComponentProps {
-    events: [];
-    startingDate: {
-		year: number,
-		month: number,
-		day: number
-	};
-}
-
-interface DayObject {
-    day: number;
-	isFromCurrMnth: boolean;
-};
-
+import CalendarComponentProps from '../interfaces/CalendarComponentProps';
+import DayCellProps from '../interfaces/DayCellProps';
 
 /**The CalendarComponent component renders the outer shell of the table */
 class CalendarComponent extends React.Component <CalendarComponentProps> {
@@ -38,41 +25,41 @@ class CalendarComponent extends React.Component <CalendarComponentProps> {
 		return monthName + " " + this.year;
 	};
 
-	getMonthObject ():DayObject[] {
+	getMonthObject ():DayCellProps[] {
 		const firstDayIndex:number = (new Date(this.year, this.month, 1).getDay() - 1);
 		const finalDay:number = (32 - new Date(this.year, this.month, 32).getDate());
 		const finalDayPrevMonth:number = (32 - new Date(this.year, (this.month - 1), 32).getDate());
 		console.log("finalDayPrevMonth", finalDayPrevMonth, firstDayIndex);
-		const outObject:DayObject[] = [];
+		const outObject:DayCellProps[] = [];
 		const numOfCells:number = 35;
 		for (let i = (1 - firstDayIndex); i <= (numOfCells - firstDayIndex); i++) {
 			if (i < 1) { //previous month cells
 				outObject.push({
-					day: finalDayPrevMonth + i,
-					isFromCurrMnth: false
+					dayNumber: finalDayPrevMonth + i,
+					isFromCurrentMonth: false
 				});
 			} else if (i <= finalDay) { //current month cells
 				outObject.push({
-					day: i,
-					isFromCurrMnth: true
+					dayNumber: i,
+					isFromCurrentMonth: true
 				});
 			} else { //next month cells
 				outObject.push({
-					day: i - finalDay,
-					isFromCurrMnth: false
+					dayNumber: i - finalDay,
+					isFromCurrentMonth: false
 				});
 			}
 		}
 		return outObject;
 	};
-	renderWholeMonth (mntObj:DayObject[]):Element[] {
-		return mntObj.map((dayObj:DayObject, index:number):any => {
-			return <DayCell dayNumber={dayObj.day} isFromCurrentMonth={dayObj.isFromCurrMnth} key={"dc_" + index}/>;
+	renderWholeMonth (mntObj:DayCellProps[]):Element[] {
+		return mntObj.map((dayObj:DayCellProps, index:number):any => {
+			return <DayCell dayNumber={dayObj.dayNumber} isFromCurrentMonth={dayObj.isFromCurrentMonth} key={"dc_" + index}/>;
 		});
 	}
 	/**Component render function */
 	render () {
-		const monthObj:DayObject[] = this.getMonthObject();
+		const monthObj:DayCellProps[] = this.getMonthObject();
 		return (
 			<div className="calendarShell">
 				<h1>Calendar</h1>

@@ -1,9 +1,5 @@
 import React from 'react';
-
-interface DayCellProps {
-    dayNumber: number;
-	isFromCurrentMonth: boolean;
-};
+import DayCellProps from '../interfaces/DayCellProps';
 
 /**The DayCell component renders the outer shell of the table */
 class DayCell extends React.Component <DayCellProps> {
