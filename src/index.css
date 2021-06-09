@@ -1,5 +1,7 @@
 :root {
-  --main-text-color: #242424;
+  --main-text-color: #707070;
+  --dark-text-color: #242424;
+  --light-text-color: #c9c9c9;
   --red-text-color: #c93b2b;
   --red-event-color: #b02942;
   --green-event-color: #5cb058;
@@ -40,13 +42,13 @@ body {
   color: var(--main-text-color);
 }
 
-.calendarShell .subHeader span {
+.calendarShell .subHeader .navigation span {
   cursor: pointer;
   user-select: none;
   -moz-user-select: none;
 }
 
-.calendarShell .subHeader span:first-of-type {
+.calendarShell .subHeader .navigation span:first-of-type {
   margin-right: 4em;
 }
 
@@ -57,6 +59,7 @@ body {
   border-bottom: 0px;
   display: grid;
   grid-template-columns: repeat(7, 1fr);
+  text-align: center;
   margin: 0px;
   padding: 0px;
 }
@@ -64,4 +67,20 @@ body {
 .calendarShell .monthGrid .dayCell {
   border-right: 1px solid var(--boder-color);
   border-bottom: 1px solid var(--boder-color);
+  padding: 5px;
+  height: 5em;
+  color: var(--light-text-color);
+}
+
+.calendarShell .monthGrid .dayCell.current {
+  color: var(--main-text-color);
+}
+
+.calendarShell .monthGrid .dayHeader {
+  border-right: 1px solid var(--boder-color);
+  border-bottom: 1px solid var(--boder-color);
+  padding: 5px;
+  font-weight: bold;
+  font-size: 0.8em;
+  color: var(--main-text-color);
 }

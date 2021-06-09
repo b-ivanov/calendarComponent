@@ -1,4 +1,5 @@
 import React from 'react';
+import DayHeaders from './DayHeaders';
 import DayCell from './DayCell';
 
 interface CalendarComponentProps {
@@ -12,6 +13,7 @@ interface CalendarComponentProps {
 
 interface DayObject {
     day: number;
+	isFromCurrMnth: boolean;
 };
 
 
@@ -20,6 +22,7 @@ class CalendarComponent extends React.Component <CalendarComponentProps> {
 	year:number;
 	month:number;
 	day:number;
+	dateObject:Date;
 
 	constructor (props:CalendarComponentProps) {
 		super(props);
@@ -27,34 +30,44 @@ class CalendarComponent extends React.Component <CalendarComponentProps> {
 		this.year = (props.startingDate ? props.startingDate.year : now.getFullYear());
 		this.month = (props.startingDate ? props.startingDate.month : now.getMonth());
 		this.day = (props.startingDate ? props.startingDate.day : now.getDate());
+		this.dateObject = new Date(this.year, this.month, this.day);
 	}
+
+	getMonthNameAndYear ():string {
+		const monthName = this.dateObject.toLocaleString('default', { month: 'long' });
+		return monthName + " " + this.year;
+	};
 
 	getMonthObject ():DayObject[] {
 		const firstDayIndex:number = (new Date(this.year, this.month, 1).getDay() - 1);
 		const finalDay:number = (32 - new Date(this.year, this.month, 32).getDate());
+		const finalDayPrevMonth:number = (32 - new Date(this.year, (this.month - 1), 32).getDate());
+		console.log("finalDayPrevMonth", finalDayPrevMonth, firstDayIndex);
 		const outObject:DayObject[] = [];
 		const numOfCells:number = 35;
-		console.log(finalDay);
 		for (let i = (1 - firstDayIndex); i <= (numOfCells - firstDayIndex); i++) {
 			if (i < 1) { //previous month cells
 				outObject.push({
-					day: 33
+					day: finalDayPrevMonth + i,
+					isFromCurrMnth: false
 				});
 			} else if (i <= finalDay) { //current month cells
 				outObject.push({
-					day: i
+					day: i,
+					isFromCurrMnth: true
 				});
 			} else { //next month cells
 				outObject.push({
-					day: i - finalDay
+					day: i - finalDay,
+					isFromCurrMnth: false
 				});
 			}
 		}
 		return outObject;
 	};
 	renderWholeMonth (mntObj:DayObject[]):Element[] {
-		return mntObj.map((dayObj:DayObject):any => {
-			return <DayCell dayNumber={dayObj.day} key={dayObj.day}/>;
+		return mntObj.map((dayObj:DayObject, index:number):any => {
+			return <DayCell dayNumber={dayObj.day} isFromCurrentMonth={dayObj.isFromCurrMnth} key={"dc_" + index}/>;
 		});
 	}
 	/**Component render function */
@@ -64,13 +77,14 @@ class CalendarComponent extends React.Component <CalendarComponentProps> {
 			<div className="calendarShell">
 				<h1>Calendar</h1>
 				<div className="subHeader">
-					<div className="monthName">January 2021</div>
+					<div className="monthName">{this.getMonthNameAndYear()}</div>
 					<div className="navigation">
 						<span>&#10094;</span>
 						<span>&#10095;</span>
 					</div>
 				</div>
 				<ul className="monthGrid">
+					<DayHeaders/>
 					{ this.renderWholeMonth(monthObj) }
 				</ul>
 			</div>
