@@ -29,7 +29,6 @@ class CalendarComponent extends React.Component <CalendarComponentProps, Calenda
 		const finalDayPrevMonth:number = (32 - new Date(this.state.year, (this.state.month - 1), 32).getDate());
 		const outObject:DayCellProps[] = [];
 		const numOfCells:number = 35;
-		console.log("firstDayIndex", firstDayIndex);
 		for (let i = (1 - firstDayIndex); i <= (numOfCells - firstDayIndex); i++) {
 			if (i < 1) { //previous month cells
 				outObject.push({
