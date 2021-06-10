@@ -4,10 +4,7 @@ import './index.css';
 import CalendarComponent from './components/CalendarComponent';
 import reportWebVitals from './reportWebVitals';
 
-const testObj = {
-  asd: 1,
-  sda: 2
-};
+const testObj = {};
 const startFrom= {
   year: 2021,
   month: 5,

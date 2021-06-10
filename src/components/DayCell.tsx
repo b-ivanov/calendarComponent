@@ -6,7 +6,10 @@ class DayCell extends React.Component <DayCellProps> {
 	getCellClasses ():string {
 		const cls:string[] = ["dayCell"];
 		if (this.props.isFromCurrentMonth) {
-			cls.push("current");
+			cls.push("currentMonth");
+		}
+		if (this.props.isCurrentDay) {
+			cls.push("currentDay");
 		}
 		return cls.join(" ");
 	};

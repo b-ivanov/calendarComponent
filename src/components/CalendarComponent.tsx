@@ -24,6 +24,9 @@ class CalendarComponent extends React.Component <CalendarComponentProps, Calenda
 	};
 
 	getMonthObject ():DayCellProps[] {
+		const now:Date = new Date();
+		const today:number = now.getDate();
+		const currDayFlag:boolean = (this.state.month === now.getMonth() && this.state.year === now.getFullYear());
 		const firstDayIndex:number = (new Date(this.state.year, this.state.month, 1).getDay() - 1);
 		const finalDay:number = (32 - new Date(this.state.year, this.state.month, 32).getDate());
 		const finalDayPrevMonth:number = (32 - new Date(this.state.year, (this.state.month - 1), 32).getDate());
@@ -33,17 +36,20 @@ class CalendarComponent extends React.Component <CalendarComponentProps, Calenda
 			if (i < 1) { //previous month cells
 				outObject.push({
 					dayNumber: finalDayPrevMonth + i,
-					isFromCurrentMonth: false
+					isFromCurrentMonth: false,
+					isCurrentDay: false
 				});
 			} else if (i <= finalDay) { //current month cells
 				outObject.push({
 					dayNumber: i,
-					isFromCurrentMonth: true
+					isFromCurrentMonth: true,
+					isCurrentDay: (i === today && currDayFlag)
 				});
 			} else { //next month cells
 				outObject.push({
 					dayNumber: i - finalDay,
-					isFromCurrentMonth: false
+					isFromCurrentMonth: false,
+					isCurrentDay: false
 				});
 			}
 		}
@@ -52,7 +58,16 @@ class CalendarComponent extends React.Component <CalendarComponentProps, Calenda
 
 	renderWholeMonth (mntObj:DayCellProps[]):Element[] {
 		return mntObj.map((dayObj:DayCellProps, index:number):any => {
-			return <DayCell dayNumber={dayObj.dayNumber} isFromCurrentMonth={dayObj.isFromCurrentMonth} key={"dc_" + index}/>;
+			return <DayCell dayNumber={dayObj.dayNumber} isFromCurrentMonth={dayObj.isFromCurrentMonth} isCurrentDay={dayObj.isCurrentDay} key={"dc_" + index}/>;
+		});
+	};
+	
+	setCurrentMonth ():void {
+		const now:Date = new Date();
+		this.setState({
+			year: now.getFullYear(),
+			month: now.getMonth(),
+			day: now.getDay()
 		});
 	};
 	
@@ -95,6 +110,7 @@ class CalendarComponent extends React.Component <CalendarComponentProps, Calenda
 					<div className="monthName">{this.getMonthNameAndYear()}</div>
 					<div className="navigation">
 						<span onClick={() => this.decrementMonth()}>&#10094;</span>
+						<span className="todayBtn" onClick={() => this.setCurrentMonth()}>Today</span>
 						<span onClick={() => this.incrementMonth()}>&#10095;</span>
 					</div>
 				</div>

@@ -46,10 +46,20 @@ body {
   cursor: pointer;
   user-select: none;
   -moz-user-select: none;
+  vertical-align: middle;
+}
+
+.calendarShell .subHeader .navigation span.todayBtn {
+  font-size: 0.7em;
+  font-weight: bold;
 }
 
 .calendarShell .subHeader .navigation span:first-of-type {
-  margin-right: 4em;
+  margin-right: 2em;
+}
+
+.calendarShell .subHeader .navigation span:last-of-type {
+  margin-left: 2em;
 }
 
 .calendarShell .monthGrid {
@@ -77,8 +87,13 @@ body {
   border-left: 1px solid var(--boder-color); 
 }
 
-.calendarShell .monthGrid .dayCell.current {
+.calendarShell .monthGrid .dayCell.currentMonth {
   color: var(--main-text-color);
+}
+
+.calendarShell .monthGrid .dayCell.currentDay {
+  border: 1px solid var(--red-text-color);
+  color: var(--red-text-color);
 }
 
 .calendarShell .monthGrid .dayHeader {
