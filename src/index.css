@@ -66,7 +66,6 @@ body {
   list-style: none;
   display: grid;
   grid-template-columns: repeat(7, 1fr);
-  text-align: center;
   margin: 0px;
   padding: 0px;
 }
@@ -77,6 +76,7 @@ body {
   padding: 5px;
   height: 5em;
   color: var(--light-text-color);
+  overflow: hidden;
 }
 
 .calendarShell .monthGrid .dayCell:nth-child(-n+14) {
@@ -96,7 +96,12 @@ body {
   color: var(--red-text-color);
 }
 
+.calendarShell .monthGrid .dayCell div {
+  text-align: center;
+}
+
 .calendarShell .monthGrid .dayHeader {
+  text-align: center;
   border-right: 1px solid var(--boder-color);
   margin-bottom: 1em;
   font-weight: bold;
@@ -106,4 +111,12 @@ body {
 
 .calendarShell .monthGrid .dayHeader:nth-child(7) {
   border-right: none;
+}
+
+.calendarShell .monthGrid .eventDot {
+  font-size: 2.5em;
+  line-height: 0.5em;
+  margin: 0px 2px;
+  display: inline-block;
+  cursor: pointer;
 }

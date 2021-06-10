@@ -17,7 +17,8 @@ class DayCell extends React.Component <DayCellProps> {
 	render () {
 		return (
 			<li className={this.getCellClasses()}>
-				<span>{this.props.dayNumber}</span>
+				<div>{this.props.dayNumber}</div>
+				<span className="eventDot">&#8226;</span>
 			</li>
 		);
 	};
