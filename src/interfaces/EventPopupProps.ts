@@ -1,5 +1,9 @@
 import EventDotProps from "./EventDotProps";
 export default interface EventPopupProps {
-    isVisible: boolean;
+    styleProperties: {
+        isVisible: boolean,
+        x: number,
+        y: number
+    };
     eventObject: EventDotProps|null;
 };

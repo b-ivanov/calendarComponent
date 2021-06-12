@@ -1,5 +1,6 @@
 import React, { ReactElement } from 'react';
 import EventPopupProps from '../interfaces/EventPopupProps';
+import PopupContainerStyles from '../interfaces/PopupContainerStyles';
 import Emitter from '../services/emitter';
 
 /**The DayCell component renders the outer shell of the table */
@@ -41,11 +42,34 @@ class EventPopup extends React.Component <EventPopupProps> {
 		}
 	};
 
+	getContainerStyles():any {
+		const dotSize:number = 10;
+		const bodyWidth:number = document.body.offsetWidth;
+		const bodyHeight:number = document.body.offsetHeight;
+		const styles:PopupContainerStyles = {};
+		if (this.props.styleProperties.isVisible) {
+			styles.display = "block";
+		}
+		
+		if ((bodyHeight / 3*2) < this.props.styleProperties.y) {
+			styles.bottom = (bodyHeight - this.props.styleProperties.y + dotSize) + "px";
+		} else {
+			styles.top = (this.props.styleProperties.y + dotSize) + "px";
+		}
+		if ((bodyWidth / 2) < this.props.styleProperties.x) {
+			styles.right = (bodyWidth - this.props.styleProperties.x + dotSize) + "px";
+		} else {
+			styles.left = (this.props.styleProperties.x + dotSize) + "px";
+		}
+		return styles;
+	};
+
 	/**Component render function */
 	render ():ReactElement|string {
+		console.log(this.props.styleProperties);
 		if (this.props.eventObject) {
 			return (
-				<div className="eventPopup" style={this.props.isVisible ? {display: "block"} : {}}>
+				<div className="eventPopup" style={this.getContainerStyles()}>
 					<div className="headerDiv" style={{backgroundColor: this.props.eventObject.color || "var(--green-event-color)"}}>
 						<span>{this.props.eventObject.name}</span>
 						<span className="closePopup" onClick={() => { Emitter.emit('hide_event_popup', null); }}>&#10006;</span>

@@ -6,6 +6,7 @@ import CalendarComponentProps from '../interfaces/CalendarComponentProps';
 import CalendarComponentState from '../interfaces/CalendarComponentState';
 import DayCellProps from '../interfaces/DayCellProps';
 import EventDotProps from '../interfaces/EventDotProps';
+import ShowPopupProps from '../interfaces/ShowPopupProps';
 import Emitter from '../services/emitter';
 // import EventPopupProps from '../interfaces/EventPopupProps';
 
@@ -21,22 +22,30 @@ class CalendarComponent extends React.Component <CalendarComponentProps, Calenda
 			year: year,
 			month: month,
 			day: date.getDate(),
-			showEventPopup: false,
+			showEventPopup: {
+				isVisible: false,
+				x: 0,
+				y: 0
+			},
 			selectedEvent: null
 		};
 	};
 
 	componentDidMount():void {
-        Emitter.on('show_event_popup', (properties:EventDotProps) => {
+        Emitter.on('show_event_popup', (properties:ShowPopupProps) => {
 			this.setState(() => ({
-				showEventPopup: true,
-				selectedEvent: properties
+				showEventPopup: properties.coords,
+				selectedEvent: properties.dotProps
 			}));
 		});
 
         Emitter.on('hide_event_popup', () => {
 			this.setState(() => ({
-				showEventPopup: false,
+				showEventPopup: {
+					isVisible: false,
+					x: 0,
+					y: 0
+				},
 				selectedEvent: null
 			}));
 		});
@@ -118,7 +127,11 @@ class CalendarComponent extends React.Component <CalendarComponentProps, Calenda
 			month: month,
 			day: now.getDay(),
 			sortedEvents: this.getSortedEvents(year, month),
-			showEventPopup:false
+			showEventPopup: {
+				isVisible: false,
+				x: 0,
+				y: 0
+			}
 		});
 	};
 	
@@ -135,7 +148,11 @@ class CalendarComponent extends React.Component <CalendarComponentProps, Calenda
 			month: tempMonth,
 			day: this.state.day,
 			sortedEvents: this.getSortedEvents(tempYear, tempMonth),
-			showEventPopup:false
+			showEventPopup: {
+				isVisible: false,
+				x: 0,
+				y: 0
+			}
 		});
 	};
 
@@ -152,7 +169,11 @@ class CalendarComponent extends React.Component <CalendarComponentProps, Calenda
 			month: tempMonth,
 			day: this.state.day,
 			sortedEvents: this.getSortedEvents(tempYear, tempMonth),
-			showEventPopup:false
+			showEventPopup: {
+				isVisible: false,
+				x: 0,
+				y: 0
+			}
 		});
 	};
 
@@ -174,7 +195,7 @@ class CalendarComponent extends React.Component <CalendarComponentProps, Calenda
 					<DayHeaders/>
 					{ this.renderWholeMonth(monthObj) }
 				</ul>
-				<EventPopup isVisible={this.state.showEventPopup} eventObject={this.state.selectedEvent}/>
+				<EventPopup styleProperties={this.state.showEventPopup} eventObject={this.state.selectedEvent}/>
 			</div>
 		);
 	};
