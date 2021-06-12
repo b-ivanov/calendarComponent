@@ -8,7 +8,7 @@ class DayCell extends React.Component <DayCellProps> {
 	renderDayEvents (events:EventDotProps[]|undefined):Element[]|string {
 		if (events) {
 			return events.map((evt:EventDotProps, index:number):any => {
-				return <EventDot id={evt.id} dateTime={evt.dateTime} name={evt.name} type={evt.type} key={"evt_" + index} />;
+				return <EventDot id={evt.id} dateTime={evt.dateTime} name={evt.name} type={evt.type} color={evt.color} key={evt.id}/>;
 			});
 		} else {
 			return "";

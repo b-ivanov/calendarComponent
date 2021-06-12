@@ -4,18 +4,38 @@ import DayCell from './DayCell';
 import CalendarComponentProps from '../interfaces/CalendarComponentProps';
 import CalendarComponentState from '../interfaces/CalendarComponentState';
 import DayCellProps from '../interfaces/DayCellProps';
-// import EventDotProps from '../interfaces/EventDotProps';
+import EventDotProps from '../interfaces/EventDotProps';
 
 /**The CalendarComponent component renders the outer shell of the table */
 class CalendarComponent extends React.Component <CalendarComponentProps, CalendarComponentState> {
+
 	constructor (props:CalendarComponentProps) {
 		super(props);
 		let date:Date = (props.startingDate || new Date());
+		const year:number = date.getFullYear();
+		const month:number = date.getMonth();
 		this.state = {
-			year: date.getFullYear(),
-			month: date.getMonth(),
+			sortedEvents: this.getSortedEvents(year, month),
+			year: year,
+			month: month,
 			day: date.getDate()
 		};
+		console.log(this.state.sortedEvents);
+	};
+
+	getSortedEvents (year:number, month:number):EventDotProps[][] {
+		const sortedEvts:EventDotProps[][] = Array.from({ length: 31 }, () => []);
+		if (this.props.events) {
+			let currDate:Date;
+			for (let e:number = 0; e < this.props.events.length; e++) {
+				currDate = this.props.events[e].dateTime;
+				console.log(currDate.getFullYear(), year, currDate.getMonth(), month);
+				if (currDate.getFullYear() === year && currDate.getMonth() === month) {
+					sortedEvts[currDate.getDate()].push(this.props.events[e]);
+				}
+			}
+		}
+		return sortedEvts;
 	};
 
 	getMonthNameAndYear ():string {
@@ -33,7 +53,7 @@ class CalendarComponent extends React.Component <CalendarComponentProps, Calenda
 		const finalDayPrevMonth:number = (32 - new Date(this.state.year, (this.state.month - 1), 32).getDate());
 		const outObject:DayCellProps[] = [];
 		const numOfCells:number = 35;
-		for (let i = (1 - firstDayIndex); i <= (numOfCells - firstDayIndex); i++) {
+		for (let i:number = (1 - firstDayIndex); i <= (numOfCells - firstDayIndex); i++) {
 			if (i < 1) { //previous month cells
 				outObject.push({
 					dayNumber: finalDayPrevMonth + i,
@@ -42,12 +62,11 @@ class CalendarComponent extends React.Component <CalendarComponentProps, Calenda
 					events: []
 				});
 			} else if (i <= finalDay) { //current month cells
-				console.log(i, this.state.month, this.state.year);
 				outObject.push({
 					dayNumber: i,
 					isFromCurrentMonth: true,
 					isCurrentDay: (i === today && currDayFlag),
-					events: this.props.events
+					events: this.state.sortedEvents[i]
 				});
 			} else { //next month cells
 				outObject.push({
@@ -87,7 +106,8 @@ class CalendarComponent extends React.Component <CalendarComponentProps, Calenda
 		this.setState({
 			year: tempYear,
 			month: tempMonth,
-			day: this.state.day
+			day: this.state.day,
+			sortedEvents: this.getSortedEvents(tempYear, tempMonth)
 		});
 	};
 
@@ -102,7 +122,8 @@ class CalendarComponent extends React.Component <CalendarComponentProps, Calenda
 		this.setState({
 			year: tempYear,
 			month: tempMonth,
-			day: this.state.day
+			day: this.state.day,
+			sortedEvents: this.getSortedEvents(tempYear, tempMonth)
 		});
 	};
 	/**Component render function */
