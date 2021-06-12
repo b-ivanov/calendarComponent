@@ -5,4 +5,5 @@ export default interface EventPopupProps {
     color: string;
     description: string;
 	category: string;
+	isVisible: boolean;
 };

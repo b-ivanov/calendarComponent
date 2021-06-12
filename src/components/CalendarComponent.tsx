@@ -19,7 +19,8 @@ class CalendarComponent extends React.Component <CalendarComponentProps, Calenda
 			sortedEvents: this.getSortedEvents(year, month),
 			year: year,
 			month: month,
-			day: date.getDate()
+			day: date.getDate(),
+			showEventPopup: false
 		};
 	};
 
@@ -93,7 +94,8 @@ class CalendarComponent extends React.Component <CalendarComponentProps, Calenda
 			year: year,
 			month: month,
 			day: now.getDay(),
-			sortedEvents: this.getSortedEvents(year, month)
+			sortedEvents: this.getSortedEvents(year, month),
+			showEventPopup:false
 		});
 	};
 	
@@ -109,7 +111,8 @@ class CalendarComponent extends React.Component <CalendarComponentProps, Calenda
 			year: tempYear,
 			month: tempMonth,
 			day: this.state.day,
-			sortedEvents: this.getSortedEvents(tempYear, tempMonth)
+			sortedEvents: this.getSortedEvents(tempYear, tempMonth),
+			showEventPopup:false
 		});
 	};
 
@@ -125,8 +128,15 @@ class CalendarComponent extends React.Component <CalendarComponentProps, Calenda
 			year: tempYear,
 			month: tempMonth,
 			day: this.state.day,
-			sortedEvents: this.getSortedEvents(tempYear, tempMonth)
+			sortedEvents: this.getSortedEvents(tempYear, tempMonth),
+			showEventPopup:false
 		});
+	};
+	
+	toggleEventPopup ():void {
+		this.setState(() => ({
+			showEventPopup: !this.state.showEventPopup
+		}));
 	};
 	/**Component render function */
 	render ():ReactElement {
@@ -146,7 +156,7 @@ class CalendarComponent extends React.Component <CalendarComponentProps, Calenda
 					<DayHeaders/>
 					{ this.renderWholeMonth(monthObj) }
 				</ul>
-				<EventPopup dateTime={new Date(2021, 5, 12)} name={"Name of event"} type={0} color={"#5cb058"} description={"Description of event"} category={"Category of event"}/>
+				<EventPopup isVisible={this.state.showEventPopup} dateTime={new Date(2021, 5, 12)} name={"Name of event"} type={0} color={"#5cb058"} description={"Description of event"} category={"Category of event"}/>
 			</div>
 		);
 	};

@@ -10,7 +10,7 @@ class EventPopup extends React.Component <EventPopupProps> {
 	/**Component render function */
 	render ():ReactElement {
 		return (
-			<div className="eventPopup">
+			<div className="eventPopup" style={this.props.isVisible ? {display: "block"} : {}}>
 				<div className="headerDiv" style={{backgroundColor: this.props.color}}>
 					<span>{this.props.name}</span>
 					<span className="closePopup">&#10006;</span>

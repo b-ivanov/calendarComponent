@@ -130,6 +130,7 @@ body {
   border-radius: 1em;
   background-color: var(--white-text-color);
   font-weight: bold;
+  display: none;
 }
 .calendarShell .eventPopup .headerDiv {
   padding: 1em;
