@@ -11,7 +11,7 @@ export const data:EventDotProps[] = [{
 	type: 0, 										//REQUIRED, type of the event (0 - single / 1 - recurring)
 	color: "#800080", 								//OPTIONAL, add a custom color
 	description: "Trying out stuff.", 				//OPTIONAL, add mode details for the event
-	category: "N/A" 								//OPTIONAL, add a category for easier filtering
+	category: "Personal events" 								//OPTIONAL, add a category for easier filtering
 }, {
 	id: "evt_2",
 	dateTime: new Date(year, month, 28),
@@ -29,7 +29,7 @@ export const data:EventDotProps[] = [{
 	type: 0,
 	color: "#b02942",
 	description: "Trying out stuff.",
-	category: "N/A"
+	category: "Personal events"
 }, {
 	id: "evt_5",
 	dateTime: new Date(year, month, 22),
@@ -37,7 +37,7 @@ export const data:EventDotProps[] = [{
 	type: 0,
 	color: "#5cb058",
 	description: "Trying out stuff.",
-	category: "N/A"
+	category: "Personal events"
 }, {
 	id: "evt_6",
 	dateTime: new Date(year, month, 22),
@@ -45,7 +45,7 @@ export const data:EventDotProps[] = [{
 	type: 0,
 	color: "#d35c27",
 	description: "Trying out stuff.",
-	category: "N/A"
+	category: "Personal events"
 }, {
 	id: "evt_7",
 	dateTime: new Date(year, month, 12),
@@ -53,5 +53,5 @@ export const data:EventDotProps[] = [{
 	type: 0,
 	color: "#d35c27",
 	description: "Trying out stuff.",
-	category: "N/A"
+	category: "Personal events"
 }];

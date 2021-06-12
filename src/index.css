@@ -2,11 +2,13 @@
   --main-text-color: #707070;
   --dark-text-color: #242424;
   --light-text-color: #c9c9c9;
+  --white-text-color: #ffffff;
   --red-text-color: #c93b2b;
   --red-event-color: #b02942;
   --green-event-color: #5cb058;
   --orange-event-color: #d35c27;
   --boder-color: #ededed;
+  --faded-background-color: rgba(0, 0,0, 0.2)
 }
 
 body {
@@ -119,4 +121,45 @@ body {
   margin: 0px 2px;
   display: inline-block;
   cursor: pointer;
+}
+.calendarShell .eventPopup {
+  position: absolute;
+  top: 100px;
+  left: 100px;
+  box-shadow: 0px 7px 11px 0px rgb(0 0 0 / 20%);
+  border-radius: 1em;
+  background-color: var(--white-text-color);
+  font-weight: bold;
+}
+.calendarShell .eventPopup .headerDiv {
+  padding: 1em;
+  border-top-left-radius: 1em;
+  border-top-right-radius: 1em;
+  min-width: 15em;
+  color: var(--white-text-color);
+}
+.calendarShell .eventPopup .headerDiv .closePopup {
+  float: right;
+  cursor: pointer;
+  background-color: var(--faded-background-color);
+  padding: 1px 5px;
+  border-radius: 50%;
+  margin-left: 5px;
+}
+.calendarShell .eventPopup .headerDiv .closePopup:hover {
+  opacity: 0.7;
+}
+.calendarShell .eventPopup .contentUl {
+  padding: 1em;
+  list-style: none;
+  margin: 0px;
+  font-size: 0.8em;
+}
+.calendarShell .eventPopup .contentUl li {
+  margin-bottom: 10px;
+}
+.calendarShell .eventPopup .contentUl svg {
+  height: 2em;
+  margin-right: 10px;
+  vertical-align: middle;
 }

@@ -1,14 +1,15 @@
-import React from 'react';
+import React, { ReactElement } from 'react';
 import DayHeaders from './DayHeaders';
 import DayCell from './DayCell';
+import EventPopup from './EventPopup';
 import CalendarComponentProps from '../interfaces/CalendarComponentProps';
 import CalendarComponentState from '../interfaces/CalendarComponentState';
 import DayCellProps from '../interfaces/DayCellProps';
 import EventDotProps from '../interfaces/EventDotProps';
+// import EventPopupProps from '../interfaces/EventPopupProps';
 
 /**The CalendarComponent component renders the outer shell of the table */
 class CalendarComponent extends React.Component <CalendarComponentProps, CalendarComponentState> {
-
 	constructor (props:CalendarComponentProps) {
 		super(props);
 		let date:Date = (props.startingDate || new Date());
@@ -86,10 +87,13 @@ class CalendarComponent extends React.Component <CalendarComponentProps, Calenda
 	
 	setCurrentMonth ():void {
 		const now:Date = new Date();
+		const year:number = now.getFullYear();
+		const month:number = now.getMonth();
 		this.setState({
-			year: now.getFullYear(),
-			month: now.getMonth(),
-			day: now.getDay()
+			year: year,
+			month: month,
+			day: now.getDay(),
+			sortedEvents: this.getSortedEvents(year, month)
 		});
 	};
 	
@@ -125,7 +129,7 @@ class CalendarComponent extends React.Component <CalendarComponentProps, Calenda
 		});
 	};
 	/**Component render function */
-	render () {
+	render ():ReactElement {
 		const monthObj:DayCellProps[] = this.getMonthObject();
 		return (
 			<div className="calendarShell">
@@ -142,6 +146,7 @@ class CalendarComponent extends React.Component <CalendarComponentProps, Calenda
 					<DayHeaders/>
 					{ this.renderWholeMonth(monthObj) }
 				</ul>
+				<EventPopup dateTime={new Date(2021, 5, 12)} name={"Name of event"} type={0} color={"#5cb058"} description={"Description of event"} category={"Category of event"}/>
 			</div>
 		);
 	};

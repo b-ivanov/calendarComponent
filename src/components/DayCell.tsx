@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { ReactElement } from 'react';
 import EventDot from './EventDot';
 import DayCellProps from '../interfaces/DayCellProps';
 import EventDotProps from '../interfaces/EventDotProps';
@@ -26,7 +26,7 @@ class DayCell extends React.Component <DayCellProps> {
 		return cls.join(" ");
 	};
 	/**Component render function */
-	render () {
+	render ():ReactElement {
 		return (
 			<li className={this.getCellClasses()}>
 				<div>{this.props.dayNumber}</div>
