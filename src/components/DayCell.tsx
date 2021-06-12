@@ -5,10 +5,14 @@ import EventDotProps from '../interfaces/EventDotProps';
 
 /**The DayCell component renders the outer shell of the table */
 class DayCell extends React.Component <DayCellProps> {
-	renderDayEvents (events:EventDotProps[]):Element[] {
-		return events.map((evt:EventDotProps, index:number):any => {
-			return <EventDot id={evt.id} date={evt.date} name={evt.name} type={evt.type}/>;
-		});
+	renderDayEvents (events:EventDotProps[]|undefined):Element[]|string {
+		if (events) {
+			return events.map((evt:EventDotProps, index:number):any => {
+				return <EventDot id={evt.id} dateTime={evt.dateTime} name={evt.name} type={evt.type} key={"evt_" + index} />;
+			});
+		} else {
+			return "";
+		}
 	};
 	
 	getCellClasses ():string {

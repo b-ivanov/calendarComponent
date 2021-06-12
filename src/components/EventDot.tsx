@@ -6,7 +6,7 @@ class EventDot extends React.Component <EventDotProps> {
 	/**Component render function */
 	render () {
 		return (
-			<span id={this.props.id} className="eventDot" title={this.props.name}>&#8226;</span>
+			<span id={this.props.id} className="eventDot" title={this.props.name} style={{color: (this.props.color || "var(--green-event-color)")}}>&#8226;</span>
 		);
 	};
 };

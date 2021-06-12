@@ -10,11 +10,11 @@ import DayCellProps from '../interfaces/DayCellProps';
 class CalendarComponent extends React.Component <CalendarComponentProps, CalendarComponentState> {
 	constructor (props:CalendarComponentProps) {
 		super(props);
-		const now:Date = new Date();
+		let date:Date = (props.startingDate || new Date());
 		this.state = {
-			year: (props.startingDate ? props.startingDate.year : now.getFullYear()),
-			month: (props.startingDate ? props.startingDate.month : now.getMonth()),
-			day: (props.startingDate ? props.startingDate.day : now.getDate())
+			year: date.getFullYear(),
+			month: date.getMonth(),
+			day: date.getDate()
 		};
 	};
 
@@ -42,16 +42,12 @@ class CalendarComponent extends React.Component <CalendarComponentProps, Calenda
 					events: []
 				});
 			} else if (i <= finalDay) { //current month cells
+				console.log(i, this.state.month, this.state.year);
 				outObject.push({
 					dayNumber: i,
 					isFromCurrentMonth: true,
 					isCurrentDay: (i === today && currDayFlag),
-					events: [{
-						id: "asd_2",
-						date: new Date(2021, 5, 30),
-						name: "Test event",
-						type: 0
-					}]
+					events: this.props.events
 				});
 			} else { //next month cells
 				outObject.push({

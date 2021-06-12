@@ -1,19 +1,21 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import reportWebVitals from './reportWebVitals';
 import './index.css';
 import CalendarComponent from './components/CalendarComponent';
-import reportWebVitals from './reportWebVitals';
+import EventDotProps from './interfaces/EventDotProps';
 
-const testObj = {};
-const startFrom= {
-  year: 2021,
-  month: 5,
-  day: 2
-};
+const eventsObj:EventDotProps[] = [{
+  id: "asd_2",
+  dateTime: new Date(2021, 5, 30),
+  name: "Test event",
+  type: 0
+}];
+const startFrom:Date = new Date(2021, 5, 2);
 
 ReactDOM.render(
   <React.StrictMode>
-    <CalendarComponent events={testObj} startingDate={startFrom}/>
+    <CalendarComponent events={eventsObj} startingDate={startFrom}/>
   </React.StrictMode>,
   document.getElementById('root')
 );

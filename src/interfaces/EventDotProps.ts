@@ -1,6 +1,6 @@
 export default interface EventDotProps {
     id: string;
-    date: Date;
+    dateTime: Date;
     name: string;
 	type: number;
     color?: string;

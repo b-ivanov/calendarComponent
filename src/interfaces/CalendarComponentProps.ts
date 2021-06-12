@@ -1,8 +1,6 @@
+import EventDotProps from "./EventDotProps"
+
 export default interface CalendarComponentProps {
-    events?: [];
-    startingDate: {
-		year: number,
-		month: number,
-		day: number
-	};
+    events?: EventDotProps[];
+    startingDate?: Date;
 };
