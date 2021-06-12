@@ -4,6 +4,7 @@ import DayCell from './DayCell';
 import CalendarComponentProps from '../interfaces/CalendarComponentProps';
 import CalendarComponentState from '../interfaces/CalendarComponentState';
 import DayCellProps from '../interfaces/DayCellProps';
+// import EventDotProps from '../interfaces/EventDotProps';
 
 /**The CalendarComponent component renders the outer shell of the table */
 class CalendarComponent extends React.Component <CalendarComponentProps, CalendarComponentState> {
@@ -37,19 +38,27 @@ class CalendarComponent extends React.Component <CalendarComponentProps, Calenda
 				outObject.push({
 					dayNumber: finalDayPrevMonth + i,
 					isFromCurrentMonth: false,
-					isCurrentDay: false
+					isCurrentDay: false,
+					events: []
 				});
 			} else if (i <= finalDay) { //current month cells
 				outObject.push({
 					dayNumber: i,
 					isFromCurrentMonth: true,
-					isCurrentDay: (i === today && currDayFlag)
+					isCurrentDay: (i === today && currDayFlag),
+					events: [{
+						id: "asd_2",
+						date: new Date(2021, 5, 30),
+						name: "Test event",
+						type: 0
+					}]
 				});
 			} else { //next month cells
 				outObject.push({
 					dayNumber: i - finalDay,
 					isFromCurrentMonth: false,
-					isCurrentDay: false
+					isCurrentDay: false,
+					events: []
 				});
 			}
 		}
@@ -58,7 +67,7 @@ class CalendarComponent extends React.Component <CalendarComponentProps, Calenda
 
 	renderWholeMonth (mntObj:DayCellProps[]):Element[] {
 		return mntObj.map((dayObj:DayCellProps, index:number):any => {
-			return <DayCell dayNumber={dayObj.dayNumber} isFromCurrentMonth={dayObj.isFromCurrentMonth} isCurrentDay={dayObj.isCurrentDay} key={"dc_" + index}/>;
+			return <DayCell dayNumber={dayObj.dayNumber} isFromCurrentMonth={dayObj.isFromCurrentMonth} isCurrentDay={dayObj.isCurrentDay} events={dayObj.events} key={"dc_" + index}/>;
 		});
 	};
 	

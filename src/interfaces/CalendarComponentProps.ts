@@ -1,5 +1,5 @@
 export default interface CalendarComponentProps {
-    events: [];
+    events?: [];
     startingDate: {
 		year: number,
 		month: number,
