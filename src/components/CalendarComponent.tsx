@@ -6,6 +6,7 @@ import CalendarComponentProps from '../interfaces/CalendarComponentProps';
 import CalendarComponentState from '../interfaces/CalendarComponentState';
 import DayCellProps from '../interfaces/DayCellProps';
 import EventDotProps from '../interfaces/EventDotProps';
+import Emitter from '../services/emitter';
 // import EventPopupProps from '../interfaces/EventPopupProps';
 
 /**The CalendarComponent component renders the outer shell of the table */
@@ -20,9 +21,31 @@ class CalendarComponent extends React.Component <CalendarComponentProps, Calenda
 			year: year,
 			month: month,
 			day: date.getDate(),
-			showEventPopup: false
+			showEventPopup: false,
+			selectedEvent: null
 		};
 	};
+
+	componentDidMount():void {
+        Emitter.on('show_event_popup', (properties:EventDotProps) => {
+			this.setState(() => ({
+				showEventPopup: true,
+				selectedEvent: properties
+			}));
+		});
+
+        Emitter.on('hide_event_popup', () => {
+			this.setState(() => ({
+				showEventPopup: false,
+				selectedEvent: null
+			}));
+		});
+    }
+
+    componentWillUnmount():void {
+        Emitter.off('show_event_popup', null);
+        Emitter.off('hide_event_popup', null);
+    }
 
 	getSortedEvents (year:number, month:number):EventDotProps[][] {
 		const sortedEvts:EventDotProps[][] = Array.from({ length: 31 }, () => []);
@@ -132,12 +155,7 @@ class CalendarComponent extends React.Component <CalendarComponentProps, Calenda
 			showEventPopup:false
 		});
 	};
-	
-	toggleEventPopup ():void {
-		this.setState(() => ({
-			showEventPopup: !this.state.showEventPopup
-		}));
-	};
+
 	/**Component render function */
 	render ():ReactElement {
 		const monthObj:DayCellProps[] = this.getMonthObject();
@@ -156,7 +174,7 @@ class CalendarComponent extends React.Component <CalendarComponentProps, Calenda
 					<DayHeaders/>
 					{ this.renderWholeMonth(monthObj) }
 				</ul>
-				<EventPopup isVisible={this.state.showEventPopup} dateTime={new Date(2021, 5, 12)} name={"Name of event"} type={0} color={"#5cb058"} description={"Description of event"} category={"Category of event"}/>
+				<EventPopup isVisible={this.state.showEventPopup} eventObject={this.state.selectedEvent}/>
 			</div>
 		);
 	};

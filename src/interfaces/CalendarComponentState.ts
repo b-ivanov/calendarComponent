@@ -5,4 +5,5 @@ export default interface CalendarComponentState {
 	month: number;
 	day: number;
 	showEventPopup: boolean;
+	selectedEvent: EventDotProps|null;
 };

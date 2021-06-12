@@ -11,7 +11,7 @@ export const data:EventDotProps[] = [{
 	type: 0, 										//REQUIRED, type of the event (0 - single / 1 - recurring)
 	color: "#800080", 								//OPTIONAL, add a custom color
 	description: "Trying out stuff.", 				//OPTIONAL, add mode details for the event
-	category: "Personal events" 								//OPTIONAL, add a category for easier filtering
+	category: "Personal events" 					//OPTIONAL, add a category for easier filtering
 }, {
 	id: "evt_2",
 	dateTime: new Date(year, month, 28),
