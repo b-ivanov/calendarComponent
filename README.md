@@ -15,8 +15,3 @@ This sort of calendar is planned to be used when presenting distribution of diff
 * functionalities implemented to a point where it is possible to demonstrate them;
 * you should feel free to reuse any open source software as long as it has a license that allows reuse, if it will help you to achieve a working solution matching the UX design faster;
 * try to think and demonstrate your skills as if this was really production code, so maybe 100% code test coverage is not required, but having some tests would demonstrate that you are able to test the code you write.
-
-## Event types:
-* Single day
-* Multi day
-* Recurring

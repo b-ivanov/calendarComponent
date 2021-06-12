@@ -20,7 +20,6 @@ class CalendarComponent extends React.Component <CalendarComponentProps, Calenda
 			month: month,
 			day: date.getDate()
 		};
-		console.log(this.state.sortedEvents);
 	};
 
 	getSortedEvents (year:number, month:number):EventDotProps[][] {
@@ -29,7 +28,6 @@ class CalendarComponent extends React.Component <CalendarComponentProps, Calenda
 			let currDate:Date;
 			for (let e:number = 0; e < this.props.events.length; e++) {
 				currDate = this.props.events[e].dateTime;
-				console.log(currDate.getFullYear(), year, currDate.getMonth(), month);
 				if (currDate.getFullYear() === year && currDate.getMonth() === month) {
 					sortedEvts[currDate.getDate()].push(this.props.events[e]);
 				}
