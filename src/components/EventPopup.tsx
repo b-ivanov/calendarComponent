@@ -15,6 +15,14 @@ import Emitter from '../services/emitter';
  * @date 13/06/2021
  */
 class EventPopup extends React.Component <EventPopupProps> {
+	/**
+	 * Generates the event date, displaying the month full name, date and year.
+	 *
+	 * @method getDate
+	 * @return {string}		Event date
+	 * @author bivanov
+	 * @date 13/06/2021
+	 */
 	getDate ():string {
 		if (this.props.eventObject) {
 			const options:{} = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
@@ -24,7 +32,15 @@ class EventPopup extends React.Component <EventPopupProps> {
 		}
 	};
 
-	getDescriptionContent():ReactElement|string {
+	/**
+	 * Returns elements for the selected event's description, if it is present.
+	 *
+	 * @method getDescriptionContent
+	 * @return {ReactElement|string}		Elements for description
+	 * @author bivanov
+	 * @date 13/06/2021
+	 */
+	getDescriptionContent ():ReactElement|string {
 		if (this.props.eventObject && this.props.eventObject.description) {
 			return (<li>
 				<svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
@@ -39,7 +55,15 @@ class EventPopup extends React.Component <EventPopupProps> {
 		}
 	};
 
-	getCategoryContent():ReactElement|string {
+	/**
+	 * Returns elements for the selected event's category, if it is present.
+	 *
+	 * @method getCategoryContent
+	 * @return {ReactElement|string}		Elements for category
+	 * @author bivanov
+	 * @date 13/06/2021
+	 */
+	getCategoryContent ():ReactElement|string {
 		if (this.props.eventObject && this.props.eventObject.category) {
 			return (<li>
 				<svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
@@ -52,7 +76,15 @@ class EventPopup extends React.Component <EventPopupProps> {
 		}
 	};
 
-	getContainerStyles():any {
+	/**
+	 * Returns an object of style properties for event popup.
+	 *
+	 * @method getContainerStyles
+	 * @return {React.CSSProperties}		Object of style properties
+	 * @author bivanov
+	 * @date 13/06/2021
+	 */
+	getContainerStyles ():React.CSSProperties {
 		const dotSize:number = 10;
 		const bodyWidth:number = document.body.offsetWidth;
 		const bodyHeight:number = document.body.offsetHeight;
@@ -74,7 +106,14 @@ class EventPopup extends React.Component <EventPopupProps> {
 		return styles;
 	};
 
-	/**Component render function */
+	/**
+	 * Entrypoint and main render function of the component.
+	 *
+	 * @method render
+	 * @returns {ReactElement}	Component body
+	 * @author bivanov
+	 * @date 13/06/2021
+	 */
 	render ():ReactElement|string {
 		if (this.props.eventObject) {
 			return (

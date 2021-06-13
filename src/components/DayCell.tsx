@@ -15,6 +15,15 @@ import EventDotProps from '../interfaces/EventDotProps';
  * @date 13/06/2021
  */
 class DayCell extends React.Component <DayCellProps> {
+	/**
+	 * Calls EventDot to render all event dots for the current day cell depending on its properties.
+	 *
+	 * @method renderDayEvents
+	 * @param {EventDotProps[]|undefined}	events	Day events object
+	 * @returns {Element[]|string}					Collection of all events
+	 * @author bivanov
+	 * @date 13/06/2021
+	 */
 	renderDayEvents (events:EventDotProps[]|undefined):Element[]|string {
 		if (events) {
 			return events.map((evt:EventDotProps, index:number):any => {
@@ -24,7 +33,15 @@ class DayCell extends React.Component <DayCellProps> {
 			return "";
 		}
 	};
-	
+
+	/**
+	 * Returns the day cell's CSS classes depending on its properties.
+	 *
+	 * @method getCellClasses
+	 * @returns {string}		CSS classes
+	 * @author bivanov
+	 * @date 13/06/2021
+	 */
 	getCellClasses ():string {
 		const cls:string[] = ["dayCell"];
 		if (this.props.isFromCurrentMonth) {
@@ -35,7 +52,15 @@ class DayCell extends React.Component <DayCellProps> {
 		}
 		return cls.join(" ");
 	};
-	/**Component render function */
+
+	/**
+	 * Entrypoint and main render function of the component.
+	 *
+	 * @method render
+	 * @returns {ReactElement}	Component body
+	 * @author bivanov
+	 * @date 13/06/2021
+	 */
 	render ():ReactElement {
 		return (
 			<li className={this.getCellClasses()}>

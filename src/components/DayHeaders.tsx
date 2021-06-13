@@ -9,7 +9,14 @@ import React, { ReactElement } from 'react';
  * @date 13/06/2021
  */
 class DayHeaders extends React.Component {
-	/**Component render function */
+	/**
+	 * Entrypoint and main render function of the component.
+	 *
+	 * @method render
+	 * @returns {ReactElement}	Component body
+	 * @author bivanov
+	 * @date 13/06/2021
+	 */
 	render ():ReactElement[] {
 		const dayNames:string[] = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
 		return dayNames.map((day:string, index:number):ReactElement => {
