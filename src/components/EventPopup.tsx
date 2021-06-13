@@ -66,13 +66,12 @@ class EventPopup extends React.Component <EventPopupProps> {
 
 	/**Component render function */
 	render ():ReactElement|string {
-		console.log(this.props.styleProperties);
 		if (this.props.eventObject) {
 			return (
 				<div className="eventPopup" style={this.getContainerStyles()}>
 					<div className="headerDiv" style={{backgroundColor: this.props.eventObject.color || "var(--green-event-color)"}}>
-						<span>{this.props.eventObject.name}</span>
 						<span className="closePopup" onClick={() => { Emitter.emit('hide_event_popup', null); }}>&#10006;</span>
+						<span>{this.props.eventObject.name}</span>
 					</div>
 					<ul className="contentUl"  style={{fill: this.props.eventObject.color || "var(--green-event-color)"}}>
 						<li>

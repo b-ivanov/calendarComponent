@@ -71,7 +71,7 @@ class CalendarComponent extends React.Component <CalendarComponentProps, Calenda
 	};
 
 	getMonthNameAndYear ():string {
-		const date:Date = new Date(this.state.year, this.state.month, this.state.day);
+		const date:Date = new Date(this.state.year, this.state.month);
 		const monthName = date.toLocaleString('default', { month: 'long' });
 		return monthName + " " + this.state.year;
 	};
@@ -80,11 +80,15 @@ class CalendarComponent extends React.Component <CalendarComponentProps, Calenda
 		const now:Date = new Date();
 		const today:number = now.getDate();
 		const currDayFlag:boolean = (this.state.month === now.getMonth() && this.state.year === now.getFullYear());
-		const firstDayIndex:number = (new Date(this.state.year, this.state.month, 1).getDay() - 1);
+		let firstDayIndex:number = (new Date(this.state.year, this.state.month, 1).getDay() - 1);
+		let numOfCells:number = 35;
+		if (firstDayIndex < 0) {
+			firstDayIndex = 6;
+			numOfCells = 42;
+		}
 		const finalDay:number = (32 - new Date(this.state.year, this.state.month, 32).getDate());
 		const finalDayPrevMonth:number = (32 - new Date(this.state.year, (this.state.month - 1), 32).getDate());
 		const outObject:DayCellProps[] = [];
-		const numOfCells:number = 35;
 		for (let i:number = (1 - firstDayIndex); i <= (numOfCells - firstDayIndex); i++) {
 			if (i < 1) { //previous month cells
 				outObject.push({

@@ -76,7 +76,7 @@ body {
   border-right: 1px solid var(--boder-color);
   border-bottom: 1px solid var(--boder-color);
   padding: 5px;
-  height: 5em;
+  height: 4em;
   color: var(--light-text-color);
   overflow: hidden;
 }
@@ -135,13 +135,14 @@ body {
   border-top-left-radius: 1em;
   border-top-right-radius: 1em;
   min-width: 15em;
+  max-width: 25em;
   color: var(--white-text-color);
 }
 .calendarShell .eventPopup .headerDiv .closePopup {
   float: right;
   cursor: pointer;
   background-color: var(--faded-background-color);
-  padding: 1px 5px;
+  padding: 3px 7px;
   border-radius: 50%;
   margin-left: 10px;
 }
