@@ -8,9 +8,24 @@ import DayCellProps from '../interfaces/DayCellProps';
 import EventDotProps from '../interfaces/EventDotProps';
 import ShowPopupProps from '../interfaces/ShowPopupProps';
 import Emitter from '../services/emitter';
-// import EventPopupProps from '../interfaces/EventPopupProps';
 
-/**The CalendarComponent component renders the outer shell of the table */
+/**
+ * Main class component of the application. Renders the container for the calendar and houses its functionalities.
+ *
+ * @class CalendarComponent
+ * @uses react
+ * @uses components/DayHeaders
+ * @uses components/DayCell
+ * @uses components/EventPopup
+ * @uses interfaces/CalendarComponentProps
+ * @uses interfaces/CalendarComponentState
+ * @uses interfaces/DayCellProps
+ * @uses interfaces/EventDotProps
+ * @uses interfaces/ShowPopupProps
+ * @uses services/emitter
+ * @author bivanov
+ * @date 13/06/2021
+ */
 class CalendarComponent extends React.Component <CalendarComponentProps, CalendarComponentState> {
 	constructor (props:CalendarComponentProps) {
 		super(props);

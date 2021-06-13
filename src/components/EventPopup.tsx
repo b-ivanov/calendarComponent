@@ -3,7 +3,17 @@ import EventPopupProps from '../interfaces/EventPopupProps';
 import PopupContainerStyles from '../interfaces/PopupContainerStyles';
 import Emitter from '../services/emitter';
 
-/**The DayCell component renders the outer shell of the table */
+/**
+ * Class component rendering the evnt popup to show detailed information for a selected event.
+ *
+ * @class EventPopup
+ * @uses react
+ * @uses interfaces/EventPopupProps
+ * @uses interfaces/PopupContainerStyles
+ * @uses services/emitter
+ * @author bivanov
+ * @date 13/06/2021
+ */
 class EventPopup extends React.Component <EventPopupProps> {
 	getDate ():string {
 		if (this.props.eventObject) {

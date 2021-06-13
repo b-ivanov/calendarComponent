@@ -2,7 +2,16 @@ import React, { ReactElement } from 'react';
 import EventDotProps from '../interfaces/EventDotProps';
 import Emitter from '../services/emitter';
 
-/**The DayCell component renders the outer shell of the table */
+/**
+ * Class component rendering a single event dot in a dell cell. Emits an event for openning the event popup.
+ *
+ * @class EventDot
+ * @uses react
+ * @uses interfaces/EventDotProps
+ * @uses services/emitter
+ * @author bivanov
+ * @date 13/06/2021
+ */
 class EventDot extends React.Component <EventDotProps> {
 	callShowPopup (evt:React.MouseEvent):void {
 		Emitter.emit('show_event_popup', {

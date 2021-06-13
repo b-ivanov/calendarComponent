@@ -1,6 +1,13 @@
 import React, { ReactElement } from 'react';
 
-/**The DayHeaders component renders the outer shell of the table */
+/**
+ * Class component rendering the header of the calender with all day names.
+ *
+ * @class DayHeaders
+ * @uses react
+ * @author bivanov
+ * @date 13/06/2021
+ */
 class DayHeaders extends React.Component {
 	/**Component render function */
 	render ():ReactElement[] {

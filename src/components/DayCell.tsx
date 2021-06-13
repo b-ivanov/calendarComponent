@@ -3,7 +3,17 @@ import EventDot from './EventDot';
 import DayCellProps from '../interfaces/DayCellProps';
 import EventDotProps from '../interfaces/EventDotProps';
 
-/**The DayCell component renders the outer shell of the table */
+/**
+ * Class component rendering a single day cell from the calendar.
+ *
+ * @class DayCell
+ * @uses react
+ * @uses components/EventDot
+ * @uses interfaces/DayCellProps
+ * @uses interfaces/EventDotProps
+ * @author bivanov
+ * @date 13/06/2021
+ */
 class DayCell extends React.Component <DayCellProps> {
 	renderDayEvents (events:EventDotProps[]|undefined):Element[]|string {
 		if (events) {
